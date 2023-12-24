@@ -1,0 +1,3 @@
+manhole_closed : True
+manhole_hole : True
+person : True

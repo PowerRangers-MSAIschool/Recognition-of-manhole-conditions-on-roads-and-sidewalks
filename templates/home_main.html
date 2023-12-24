@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="static/css/toggle.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>videojs</title>
+    <style>
+        body {
+            background-color: #191919;
+            font-family: Arial, sans-serif; 
+            color: white;  
+            display: flex;
+            align-items: stretch;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            max-width: calc(75% - 10px); 
+        }
+
+        .video-container img {
+            flex-basis: calc(50% - 10px); /* 2개씩 위아래로 배치 */
+            max-width: calc(50% - 10px); /* 최대 너비 */
+            max-height: calc(50vh - 10px);
+            object-fit: cover;
+            cursor: pointer;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            color:#333;
+        }
+        .notice {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            padding: 1em;
+            background: yellow;
+            color:#333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1><span style="border-radius: 5px; padding: 0.6em 1em; background: #F1F1F3; font-weight: bold;"> &#128736;맨홀 관리 CCTV&#128736;</span></p></h1>
+    <div class="video-container">
+        <div class="video-wrapper">
+            <div class="video-text"><p><span style="border: 5px double #DCDCDC; padding: 0.4em;"><b>&#127910;screen1</b></span></p></div>
+            <a href="{% url 'move_test1' %}">
+                <video style="border-radius: 0.8rem" class="video" muted autoplay playsinline loop width="640" height="360" controls>
+                    <source src="{% static 'cctv_video/cctv1.mp4' %}" type="video/mp4" style="border-radius: 0.8rem">
+                </video>
+            </a>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="video-text"><p><span style="border: 5px double #DCDCDC; padding: 0.4em;"><b>&#127910;screen2</b></span></p></div>
+            <a href="{% url 'move_test2' %}">
+                <video style="border-radius: 0.8rem" class="video" muted autoplay playsinline loop width="640" height="360" controls>
+                    <source src="{% static 'cctv_video/cctv2.mp4' %}" type="video/mp4" style="border-radius: 0.8rem">
+                </video>
+            </a>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="video-text"><p><span style="border: 5px double #DCDCDC; padding: 0.4em;"><b>&#127910;screen3</b></span></p></div>
+            <a href="{% url 'move_test3' %}">
+                <video style="border-radius: 0.8rem" class="video" muted autoplay playsinline loop width="640" height="360" controls>
+                    <source src="{% static 'cctv_video/cctv3.mp4' %}" type="video/mp4" style="border-radius: 0.8rem">
+                </video>
+            </a>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="video-text"><p><span style="border: 5px double #DCDCDC; padding: 0.4em;"><b>&#127910;screen4</b></span></p></div>
+            <a href="{% url 'move_test4' %}">
+                <video style="border-radius: 0.8rem" class="video" muted autoplay playsinline loop width="640" height="360" controls>
+                    <source src="{% static 'cctv_video/cctv4.mp4' %}" type="video/mp4" >
+                </video>
+            </a>     
+        </div>
+        
+        <div class="notice">&#128161;<b>동영상을 클릭하면
+                            확대된 객체 인식 동영상을 볼 수 있습니다.</b>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.video-link1').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                var videoName = link.getAttribute('data-video-name');
+                window.location.href = link.href + '?video_name=' + videoName;
+            });
+        });
+    </script>
+
+</html>
